@@ -1,7 +1,10 @@
 package com.ihidea.as.citypicker;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 
 import com.lljjcoder.style.citylist.utils.CityListLoader;
 import com.squareup.leakcanary.LeakCanary;
@@ -26,9 +29,47 @@ public class MyApp extends Application {
         /**
          * 预先加载三级列表显示省市区的数据
          */
-        CityListLoader.getInstance().loadProData(this);
+        CityListLoader.getInstance().loadProData(this, "my.json");
 
         refWatcher = LeakCanary.install(this);
+
+
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle bundle) {
+                Log.i("页面创建", activity.getClass().getName());
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
     }
 
 
