@@ -27,7 +27,6 @@ public class CityListLoader {
     private static List<CityInfoBean> mProListData = new ArrayList<>();
 
 
-
     /**
      * 解析所有的城市数据 357个数据
      */
@@ -124,6 +123,15 @@ public class CityListLoader {
 
         //解析省份
         mProListData = new Gson().fromJson(cityJson, type);
+    }
+
+
+    /**
+     * 直接传入list对象 你自己的省市区数据 只要格式跟CityInfoBean 一样 即可
+     */
+    public void loadProData(ArrayList<CityInfoBean> cityInfoBeans) {
+        //解析省份
+        mProListData = cityInfoBeans;
     }
 
 }
