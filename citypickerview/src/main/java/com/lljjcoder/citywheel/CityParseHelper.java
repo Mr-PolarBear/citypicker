@@ -193,7 +193,7 @@ public class CityParseHelper {
 
             //当前省份下面的所有城市
 
-//            List<CityBean> cityNames = new ArrayList<>();
+//            List<CustomLvBean> cityNames = new ArrayList<>();
 
             //遍历当前省份下面城市的所有数据
             for (int j = 0; j < cityList.size(); j++) {
