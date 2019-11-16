@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#3DA0FD</item>
+        <item name="colorPrimaryDark">#3DA0FD</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -25,4 +25,19 @@
         <item name="android:visibility">visible</item>
     </style>
 
+
+    <style name="AppTheme_city" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#BFC2C3</item>
+        <item name="colorPrimaryDark">#BFC2C3</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="AppTheme_city_dialog" parent="Theme.AppCompat.Dialog">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#3DA0FD</item>
+        <item name="colorPrimaryDark">#3DA0FD</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>

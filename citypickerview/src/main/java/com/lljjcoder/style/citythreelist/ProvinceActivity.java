@@ -2,11 +2,14 @@ package com.lljjcoder.style.citythreelist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lljjcoder.style.citylist.bean.CityInfoBean;
@@ -30,6 +33,9 @@ public class ProvinceActivity extends Activity {
 
     private CityBean provinceBean = new CityBean();
 
+    private ImageView mImgBack;
+
+
     protected static boolean isMultiple = false;//是否多选
 
     public static void Launch(Activity activity, boolean isMultiple) {
@@ -39,9 +45,18 @@ public class ProvinceActivity extends Activity {
     }
 
 
+    public static void Launch(Fragment fragment, boolean isMultiple) {
+        Intent intent = new Intent(fragment.getContext(), ProvinceActivity.class);
+        intent.putExtra(INTENT_ISMULT, isMultiple);
+        fragment.startActivityForResult(intent, RESULT_DATA);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         isMultiple = getIntent().getBooleanExtra(INTENT_ISMULT, false);
         setContentView(R.layout.activity_citylist);
         initView();
@@ -74,6 +89,14 @@ public class ProvinceActivity extends Activity {
     }
 
     private void initView() {
+        mImgBack = (ImageView) findViewById(R.id.img_left);
+        mImgBack.setVisibility(View.VISIBLE);
+        mImgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mCityNameTv = (TextView) findViewById(R.id.cityname_tv);
         mCityNameTv.setText("选择省份");
         mCityRecyclerView = (RecyclerView) findViewById(R.id.city_recyclerview);

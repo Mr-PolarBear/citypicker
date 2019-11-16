@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ihidea.as.citypicker.R;
+import com.lljjcoder.style.citylist.bean.CityInfoBean;
 import com.lljjcoder.style.citythreelist.AreaActivity;
 import com.lljjcoder.style.citythreelist.AreaActivity_Mult;
 import com.lljjcoder.style.citythreelist.CityBean;
@@ -65,12 +66,13 @@ public class CitypickerThreeListActivity extends AppCompatActivity {
                     return;
                 }
 
-                CityBean area = data.getParcelableExtra("area");
+
+                CityBean city = data.getParcelableExtra("city");
+                CityBean province = data.getParcelableExtra("province");
+                List<CityInfoBean> areaList = data.getParcelableArrayListExtra(AreaActivity_Mult.INTENT_AREA_LIST);
+                CityBean area = data.getParcelableExtra(AreaActivity.INTENT_AREA);
                 if (area == null)
                     area = new CityBean();
-                CityBean city = data.getParcelableExtra(AreaActivity.INTENT_AREA);
-                CityBean province = data.getParcelableExtra("province");
-                List<CityBean> areaList = data.getParcelableArrayListExtra(AreaActivity_Mult.INTENT_AREA_LIST);
 
                 mResultTv.setText("所选省市区城市： " + province.getName() + " " + province.getId() + "\n" + city.getName()
                         + " " + city.getId() + "\n" + area.getName() + " " + area.getId() + "\n");

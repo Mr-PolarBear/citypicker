@@ -7,17 +7,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#ff40c2fc">
+        android:layout_height="50dp"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/img_left"
-            android:layout_width="9dp"
-            android:layout_height="15dp"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_citypicker_bar_back"
-            android:visibility="gone" />
+            android:padding="15dp"
+            android:src="@drawable/city_black_back"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/cityname_tv"
@@ -25,10 +25,15 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="选择省份"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="#000000"
+            android:textSize="17sp" />
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#D1CFCF" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -47,11 +52,11 @@
     <TextView
         android:id="@+id/tv_city_mult"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/city_selector_white"
+        android:layout_height="45dp"
+        android:background="@drawable/city_selector_blue"
         android:gravity="center"
         android:text="确定"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="16sp"
         android:visibility="gone" />
 
