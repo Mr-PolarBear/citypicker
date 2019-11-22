@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.lljjcoder.style.citylist.bean.CityInfoBean;
 import com.lljjcoder.style.citypickerview.R;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.List;
  */
 
 public class Lv_Adapter extends RecyclerView.Adapter<Lv_Adapter.MyViewHolder> {
-    List<ICustomLvBean> cityList = new ArrayList<>();
+    List<AbsCustomLvBean> cityList = new ArrayList<>();
 
     Context context;
 
@@ -40,7 +39,7 @@ public class Lv_Adapter extends RecyclerView.Adapter<Lv_Adapter.MyViewHolder> {
         void onItemSelected(View view, int position);
     }
 
-    public Lv_Adapter(Context context, List<ICustomLvBean> cityList) {
+    public Lv_Adapter(Context context, List<AbsCustomLvBean> cityList) {
         this.cityList = cityList;
         this.context = context;
     }

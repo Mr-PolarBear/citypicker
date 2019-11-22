@@ -64,9 +64,9 @@ public class Lv3Activity extends Activity {
                     Toast.makeText(Lv3Activity.this, "请至少选择一项", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                mHelper.mInternal_Lv3List = cityAdapter.getSelectList();
+                mHelper.mInternal_Lv3List.addAll(cityAdapter.getSelectList());
                 //将计算的结果回传给第一个Activity
-                setResult(LV1_RESULT_DATA);
+                setResult(RESULT_OK);
                 //退出第二个Activity
                 finish();
             }
@@ -75,7 +75,7 @@ public class Lv3Activity extends Activity {
     }
 
     private void setData() {
-        final List<ICustomLvBean> cityList;
+        final List<AbsCustomLvBean> cityList;
         if (mHelper.getHierarchy() == 3) {
             mCityNameTv.setText(mHelper.mInternal_Lv2.getLvShowName());
             cityList = mHelper.mInternal_Lv2.getLvShowList();
@@ -93,7 +93,7 @@ public class Lv3Activity extends Activity {
 
         //如果外面已经传进来已经有选中的
         if (mHelper.getmSelectLv3() != null) {
-            for (ICustomLvBean iCustomLvBean : mHelper.getmSelectLv3()) {
+            for (AbsCustomLvBean iCustomLvBean : mHelper.getmSelectLv3()) {
                 cityAdapter.mArray.put(iCustomLvBean.getLvShowId(), iCustomLvBean);
             }
             cityAdapter.notifyDataSetChanged();

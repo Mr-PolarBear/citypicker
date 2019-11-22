@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.lljjcoder.style.citypickerview.R;
 import com.lljjcoder.widget.RecycleViewDividerForList;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lv1Activity extends Activity {
@@ -37,6 +38,10 @@ public class Lv1Activity extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         setContentView(R.layout.activity_citylist);
+
+
+        mHelper.mInternal_Lv3List = new HashSet<>();
+
         initView();
         setData();
 
@@ -44,7 +49,7 @@ public class Lv1Activity extends Activity {
 
     private void setData() {
 
-        final List<ICustomLvBean> cityList = mHelper.getList();
+        final List<AbsCustomLvBean> cityList = mHelper.getList();
         if (cityList == null) {
             return;
         }
@@ -67,13 +72,12 @@ public class Lv1Activity extends Activity {
                     isToMult(Lv1Activity.this);
                     return;
                 }
-
                 //3级
                 Lv2Activity.Launch(Lv1Activity.this);
-
             }
         });
     }
+
 
     protected static void isToMult(Activity context) {
         if (CustomLvHelper.getInstance().isMult())//是否多选 等待完善
@@ -81,6 +85,7 @@ public class Lv1Activity extends Activity {
         else
             Lv3Activity.Launch(context);
     }
+
 
     private void initView() {
         mImgBack = (ImageView) findViewById(R.id.img_left);
@@ -102,10 +107,9 @@ public class Lv1Activity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LV1_RESULT_DATA) {
-            setResult(RESULT_OK);
-            mHelper.getListnener().onSelectOk(mHelper.mInternal_Lv1, mHelper.mInternal_Lv2, mHelper.mInternal_Lv3List);
+        if (requestCode == LV1_RESULT_DATA && resultCode == RESULT_OK) {
             finish();
+            mHelper.getListnener().onSelectOk(mHelper.mInternal_Lv1, mHelper.mInternal_Lv2, mHelper.mInternal_Lv3List);
         }
     }
 

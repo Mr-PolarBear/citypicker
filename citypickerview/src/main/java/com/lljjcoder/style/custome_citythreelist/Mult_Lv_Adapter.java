@@ -1,7 +1,6 @@
 package com.lljjcoder.style.custome_citythreelist;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,13 +25,13 @@ import static com.lljjcoder.style.custome_citythreelist.Lv1Activity.LV1_RESULT_D
 
 public class Mult_Lv_Adapter extends RecyclerView.Adapter<Mult_Lv_Adapter.MyViewHolder> {
 
-    List<ICustomLvBean> cityList = new ArrayList<>();
-    public Map<String, ICustomLvBean> mArray = new HashMap<>();
+    List<AbsCustomLvBean> cityList = new ArrayList<>();
+    public Map<String, AbsCustomLvBean> mArray = new HashMap<>();
 
     Activity context;
 
 
-    public Mult_Lv_Adapter(Activity context, List<ICustomLvBean> cityList) {
+    public Mult_Lv_Adapter(Activity context, List<AbsCustomLvBean> cityList) {
         this.cityList = cityList;
         this.context = context;
     }
@@ -46,7 +45,7 @@ public class Mult_Lv_Adapter extends RecyclerView.Adapter<Mult_Lv_Adapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final ICustomLvBean city = cityList.get(position);
+        final AbsCustomLvBean city = cityList.get(position);
         holder.tv.setText(city.getLvShowName());
         holder.tv.setSelected(mArray.get(city.getLvShowId()) != null);
 
@@ -61,7 +60,6 @@ public class Mult_Lv_Adapter extends RecyclerView.Adapter<Mult_Lv_Adapter.MyView
             public void onClick(View v) {
 
                 if (!CustomLvHelper.getInstance().isMult()) {
-                    CustomLvHelper.getInstance().mInternal_Lv3List = new ArrayList();
                     CustomLvHelper.getInstance().mInternal_Lv3List.add(city);
                     context.setResult(LV1_RESULT_DATA);
                     context.finish();
@@ -96,9 +94,9 @@ public class Mult_Lv_Adapter extends RecyclerView.Adapter<Mult_Lv_Adapter.MyView
 
 
     //获取选中集合
-    public List<ICustomLvBean> getSelectList() {
-        List<ICustomLvBean> arrayList = new ArrayList<ICustomLvBean>();
-        for (Map.Entry<String, ICustomLvBean> entry : mArray.entrySet()) {
+    public List<AbsCustomLvBean> getSelectList() {
+        List<AbsCustomLvBean> arrayList = new ArrayList<AbsCustomLvBean>();
+        for (Map.Entry<String, AbsCustomLvBean> entry : mArray.entrySet()) {
             arrayList.add(entry.getValue());
         }
         return arrayList;

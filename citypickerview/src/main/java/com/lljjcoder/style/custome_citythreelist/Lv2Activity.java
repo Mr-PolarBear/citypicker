@@ -51,7 +51,7 @@ public class Lv2Activity extends Activity {
     private void setData() {
         mCityNameTv.setText(mHelper.mInternal_Lv1.getLvShowName());
 
-        final List<ICustomLvBean> cityList = mHelper.mInternal_Lv1.getLvShowList();
+        final List<AbsCustomLvBean> cityList = mHelper.mInternal_Lv1.getLvShowList();
         if (cityList == null) {
             return;
         }
