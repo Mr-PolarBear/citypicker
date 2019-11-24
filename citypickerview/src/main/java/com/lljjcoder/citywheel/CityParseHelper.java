@@ -8,6 +8,7 @@ import com.lljjcoder.Constant;
 import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
 import com.lljjcoder.bean.ProvinceBean;
+import com.lljjcoder.style.custome_citythreelist.AbsCustomLvBean;
 import com.lljjcoder.utils.utils;
 
 import java.lang.reflect.Type;
@@ -193,49 +194,52 @@ public class CityParseHelper {
 
             //当前省份下面的所有城市
 
-//            List<CustomLvBean> cityNames = new ArrayList<>();
+//            List<CityBean> cityNames = new ArrayList<>();
 
             //遍历当前省份下面城市的所有数据
-            for (int j = 0; j < cityList.size(); j++) {
+            if (cityList != null)
+                for (int j = 0; j < cityList.size(); j++) {
 //                cityNames[j] = cityList.get(j);
 
-                //当前省份下面每个城市下面再次对应的区或者县
-                List<DistrictBean> districtList = cityList.get(j).getCityList();
-                if (districtList == null) {
-                    break;
-                }
+                    //当前省份下面每个城市下面再次对应的区或者县
+                    List<DistrictBean> districtList = cityList.get(j).getCityList();
+                    if (districtList == null) {
+                        break;
+                    }
 //                DistrictBean[] distrinctArray = new DistrictBean[districtList.size()];
 
-                for (int k = 0; k < districtList.size(); k++) {
+                    for (int k = 0; k < districtList.size(); k++) {
 
-                    // 遍历市下面所有区/县的数据
-                    DistrictBean districtModel = districtList.get(k);
+                        // 遍历市下面所有区/县的数据
+                        DistrictBean districtModel = districtList.get(k);
 
-                    //存放 省市区-区 数据
-                    mDisMap.put(itemProvince.getName() + cityList.get(j).getName() + districtList.get(k).getName(),
-                            districtModel);
+                        //存放 省市区-区 数据
+                        mDisMap.put(itemProvince.getName() + cityList.get(j).getName() + districtList.get(k).getName(),
+                                districtModel);
 
 //                    districtList.add(districtModel);
 
-                }
-                // 市-区/县的数据，保存到mDistrictDatasMap
-                mCity_DisMap.put(itemProvince.getName() + cityList.get(j).getName(), districtList);
+                    }
+                    // 市-区/县的数据，保存到mDistrictDatasMap
+                    mCity_DisMap.put(itemProvince.getName() + cityList.get(j).getName(), districtList);
 
-            }
+                }
 
             // 省-市的数据，保存到mCitisDatasMap
             mPro_CityMap.put(itemProvince.getName(), cityList);
 
             mCityBeanArrayList.add(cityList);
+            if (cityList != null){
+                //只有显示三级联动，才会执行
+                ArrayList<ArrayList<DistrictBean>> array2DistrictLists = new ArrayList<>(cityList.size());
 
-            //只有显示三级联动，才会执行
-            ArrayList<ArrayList<DistrictBean>> array2DistrictLists = new ArrayList<>(cityList.size());
-
-            for (int c = 0; c < cityList.size(); c++) {
-                CityBean cityBean = cityList.get(c);
-                array2DistrictLists.add(cityBean.getCityList());
+                for (int c = 0; c < cityList.size(); c++) {
+                    CityBean cityBean = cityList.get(c);
+                    array2DistrictLists.add(cityBean.getCityList());
+                }
+                mDistrictBeanArrayList.add(array2DistrictLists);
             }
-            mDistrictBeanArrayList.add(array2DistrictLists);
+
 
             //            }
             mProvinceBeenArray.add(p, itemProvince);
