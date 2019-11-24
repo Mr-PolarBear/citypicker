@@ -12,6 +12,8 @@ public abstract class AbsCustomLvBean {
 
     public boolean isHead = false;
 
+    public String parentId;
+
     public abstract String getLvShowName();
 
     public abstract String getLvShowId();
